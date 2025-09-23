@@ -1,231 +1,270 @@
 <!DOCTYPE html>
 <html lang="id">
-  <meta charset="UTF-8" /><meta
-    content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
-    name="viewport"
-  /><meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Muhammad Rifa'i — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero-bg {
+      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .fade-up { transform: translateY(8px); opacity: 0; transition: all .6s ease; }
+    .fade-up.show { transform: translateY(0); opacity: 1; }
+    .nav-link.active { color: #06b6d4; font-weight: 600; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body class="antialiased text-gray-200 bg-gray-900">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-    rel="stylesheet"
-  />
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-  <link
-    href="https://feeldreams.github.io/heihbd/style.css"
-    rel="stylesheet"
-    type="text/css"
-  />
-  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
-  <script
-    src="https://kit.fontawesome.com/4f3ce16e3e.js"
-    crossorigin="anonymous"
-  ></script>
-
-  <head>
-    <title>Happy Birthday</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://malasid.github.io/favicon.png"
-    />
-    <meta name="description" content="HTML Bucin Malas.id" />
-    <!-- 
-  Made with love by Rayys!
-  
-     Blog: https://PalingIT.com
-     Instagram: @rayyarrr
-     TikTok: @rayy4r
-     Email: rayyar0703@gmail.com
-     
-  Thanks to all <3
--->
-  </head>
-  <body>
-    <!-- Ganti Audio di sini -->
-    <audio
-      src="https://feeldreams.github.io/djikhlas.mp3"
-      id="linkmp3"
-      class="sembunyi"
-    ></audio>
-
-    <div id="bodyblur">
-      <!-- Wallpaper --><img
-        src="https://feeldreams.github.io/wp9.jpg"
-        id="wallpaper"
-      />
-      <div id="beneranblur"></div>
+  <!-- SIDEBAR NAV -->
+  <aside id="sidebar" class="fixed top-0 left-0 h-full w-56 bg-gray-950 shadow-lg hidden flex-col z-50">
+    <div class="px-6 py-6 border-b border-gray-800">
+      <h1 class="text-xl font-bold text-white">Muhammad Rifa'i</h1>
+      <p class="text-xs text-gray-400 mt-1">Fullstack Developer</p>
     </div>
+    <nav class="flex-1 flex flex-col gap-4 px-6 py-6 text-sm">
+      <a href="#projects" class="nav-link hover:text-cyan-400 transition">📂 Projects</a>
+      <a href="#timeline" class="nav-link hover:text-cyan-400 transition">⏳ Journey</a>
+      <a href="#contact" class="nav-link hover:text-cyan-400 transition">✉️ Contact</a>
+    </nav>
+    <div class="px-6 py-4 border-t border-gray-800 text-xs text-gray-500">
+      © 2025 Rifai
+    </div>
+  </aside>
 
-    <div id="Content">
-      <div id="kadoIn">
-        <!-- Tombol Surat --><img
-          src="https://feeldreams.github.io/kadoin.png"
-        />
+  <!-- HERO (Parallax with Quote One Piece) -->
+  <main class="ml-0 md:ml-56 transition-all">
+    <section id="home" 
+            class="relative h-screen flex flex-col items-center justify-center text-center 
+                    bg-gradient-to-b from-sky-900 via-blue-950 to-gray-950 
+                    bg-[url('https://www.transparenttextures.com/patterns/waves.png')] bg-fixed bg-cover bg-center">
+      <div class="bg-black/50 backdrop-blur-sm rounded-xl p-8 md:p-12 max-w-3xl">
+        <h1 class="text-white text-3xl md:text-5xl font-bold leading-relaxed">
+          "Inherited will, the swelling of the changing times, and the dreams of people — these are things that cannot be stopped." 
+        </h1>
+        <p class="text-gray-400 mt-4 text-sm italic">— Gol D. Roger, One Piece</p>
       </div>
-      <p id="ket">Klik Kadonya!</p>
-
-      <div class="kumpulanstiker">
-        <!-- Stiker untuk Konten -->
-        <img src="https://feeldreams.github.io/bunga.gif" id="fotostiker" />
-        <img src="https://feeldreams.github.io/pusn.gif" id="fotostiker1" />
-        <img
-          src="https://feeldreams.github.io/pandacoklat.gif"
-          id="fotostiker2"
-        />
-        <img src="https://feeldreams.github.io/cilukba.gif" id="fotostiker3" />
-        <img
-          src="https://feeldreams.github.io/pandakuning.gif"
-          id="fotostiker4"
-        />
-        <img src="https://feeldreams.github.io/emawh.gif" id="fotostiker5" />
-
-        <img
-          src="https://feeldreams.github.io/pandacoklat.gif"
-          id="fotostiker6"
-        />
-      </div>
-
-      <p id="halo" class="halo"></p>
-
-      <div>
-        <blockquote id="bq" data-text="㋡">
-          <p id="kalimat">Aku Ada Sesuatu Nih 🤣❤️</p>
-
-          <p id="pesan1">Klik 4 LOVE di Bawah! 😆❤️</p>
-          <div id="kolombaru">
-            <li id="lv1">🤍</li>
-            <li id="lv2">🤍</li>
-            <li id="lv3">🤍</li>
-            <li id="lv4">🤍</li>
-          </div>
-
-          <p id="pesan2">Tunggu...</p>
-          <!-- Pesan -->
-          <p id="pesan3">Ciee.. Ada yang Ultah Nih 🤣❤️</p>
-          <p id="pesan4">Happy Birthday,</p>
-          <p id="pesan5" class="gaya2">Nambah tua aja ya, hehe</p>
-          <p id="pesan6" class="gaya2">
-            Moga panjang umur biar tiap tahun bisa traktirin aku wkwk 😆❤️
-          </p>
-          <p id="pesan7" class="gaya2">Sehat selalu ya!</p>
-
-          <p id="pesan8" class="gaya2">Canda wkwwk :v</p>
-          <p id="pesan9" class="gaya2">
-            Oh iya, semoga di hari spesialmu ini kamu dapat menjadi pribadi yang
-            lebih baik yaa.. 🥳❤️
-          </p>
-          <p id="pesan10" class="gaya2">Happy Level Up Day!! 🥳</p>
-
-          <!-- Tombol Lanjut -->
-          <p id="opsL">Klik untuk Lanjut</p>
-        </blockquote>
-      </div>
-
-      <!-- Tombol Kirim Pesan -->
-      <div id="Tombol"><a id="By">&#128140; Lanjut</a></div>
-
-      <!-- Pesan Tambahan -->
-      <p id="katatambahan" class="sembunyi">
-        Gajadi deh soalnya kamu bau wleee 😜
+      <p class="mt-10 text-gray-300 text-sm animate-bounce" style="animation:bounce 1.5s infinite;">
+        Please scroll down ↓
       </p>
+    </section>
 
-      <!-- Pesan Ditolak -->
-      <div id="pesanditolak">
-        <img id="stikerditolak" src="https://feeldreams.github.io/weee.gif" />
-        <p id="kataditolak">Yaudah kalo gamau mh 😜</p>
+    <!-- PROJECTS -->
+    <section id="projects" class="py-16 bg-gray-900">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-white mb-6">Experience Projects</h2>
+        <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <div id="pagination" class="mt-6 flex justify-center gap-3"></div>
       </div>
-    </div>
+    </section>
 
-    <script>
-      const body = document.querySelector("body");
-      const swalst = Swal.mixin({
-        timer: 2300,
-        allowOutsideClick: false,
-        showConfirmButton: false,
-        timerProgressBar: true,
-        imageHeight: 90,
-      });
-      audio = new Audio("" + linkmp3.src);
-      ftganti = 0;
-      fungsi = 0;
-      fungsiAwal = 0;
-      deffotostiker = fotostiker.src;
-      function berjatuhan() {
-        const heart = document.createElement("div");
-        heart.className = "fas fa-snowflake";
-        heart.style.left = Math.random() * 90 + "vw";
-        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-        body.appendChild(heart);
+    <!-- TIMELINE -->
+    <section id="timeline" class="py-16 bg-gray-950">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-white mb-8">My Journey</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Education -->
+          <div class="fade-up" data-anim>
+            <h3 class="text-lg font-semibold text-sky-400 mb-4">🎓 Education</h3>
+            <div class="space-y-4 border-l-2 border-sky-700 pl-4 text-gray-300">
+              <div>SDN 01 Dayasakti</div>
+              <div>SMPN 02 Tumijajar</div>
+              <div>SMK Muhammadiyah Tumijajar</div>
+              <div>Institut Informatika & Bisnis Darmajaya</div>
+            </div>
+          </div>
+          <!-- Organization -->
+          <div class="fade-up" data-anim>
+            <h3 class="text-lg font-semibold text-green-400 mb-4">🤝 Organization</h3>
+            <div class="space-y-4 border-l-2 border-green-700 pl-4 text-gray-300">
+              <div>2017–2018 • Kepala Bidang HIMSI</div>
+              <div>2017–2018 • Ketua Pelaksana Karnaval IT Season 7 HIMSI</div>
+              <div>2018–2019 • Sekretaris Umum HIMSI</div>
+            </div>
+          </div>
+          <!-- Work -->
+          <div class="fade-up" data-anim>
+            <h3 class="text-lg font-semibold text-violet-400 mb-4">💼 Work Experience</h3>
+            <div class="space-y-4 border-l-2 border-violet-700 pl-4 text-gray-300">
+              <div>2020–2022 • Fullstack Developer • PT KK Indonesia</div>
+              <div>2022–2023 • Fullstack Developer • PT Ramayana Lestari Sentosa</div>
+              <div>2023–2025 • Fullstack Developer • PT Sinar Sukses Mandiri</div>
+              <div>2025 • Fullstack Developer • PT IDStar Cipta Teknologi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 bg-gray-900">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Get in touch</h2>
+        <p class="text-gray-400 mb-8">Terbuka untuk kerja sama, proyek freelance, atau diskusi teknis.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-md transition">
+            <div class="font-semibold text-gray-200">WhatsApp</div>
+            <a href="https://wa.me/628709471660" target="_blank" class="text-emerald-400 mt-1 block">+62 857-0947-1660</a>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-md transition">
+            <div class="font-semibold text-gray-200">Email</div>
+            <a href="mailto:rifai.aregds@gmail.com" class="text-sky-400 mt-1 block">rifai.aregds@gmail.com</a>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-md transition">
+            <div class="font-semibold text-gray-200">Instagram</div>
+            <a href="https://instagram.com/ahmedd_rifaii" target="_blank" class="text-pink-400 mt-1 block">@ahmedd_rifaii</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-6 text-center text-gray-500 bg-gray-950">
+      © 2025 Muhammad Rifa'i — All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    // sidebar muncul setelah hero
+    const sidebar = document.getElementById('sidebar');
+    const hero = document.getElementById('home');
+    function toggleSidebar() {
+      const heroBottom = hero.offsetTop + hero.offsetHeight;
+      if (window.scrollY > heroBottom - 60) {
+        sidebar.classList.remove('hidden');
+        document.querySelector('main').classList.add('md:ml-56');
+      } else {
+        sidebar.classList.add('hidden');
+        document.querySelector('main').classList.remove('md:ml-56');
       }
-      setInterval(function name(params) {
-        var heartArr = document.querySelectorAll(".fa-snowflake");
-        if (heartArr.length > 100) {
-          heartArr[0].remove();
-        }
-      }, 100);
-      Content.style = "opacity:1;margin-top:16vh";
-      const swals = Swal.mixin({
-        allowOutsideClick: false,
-        cancelButtonColor: "#FF0040",
-        imageHeight: 80,
-      });
+    }
+    window.addEventListener('scroll', toggleSidebar);
+    toggleSidebar();
 
-      document.getElementById("kadoIn").onclick = function () {
-        if (fungsiAwal == 0) {
-          audio.play();
-          fungsiAwal = 1;
-          kadoIn.style =
-            "transition:all .8s ease;transform:scale(10);opacity:0";
-          wallpaper.style = "transform: scale(1.5);";
-          ket.style = "display:none";
-          setTimeout(initengahan, 300);
-          setTimeout(inipesan, 500);
-        }
-      };
+    // fade-up animation
+    const animEls = document.querySelectorAll('[data-anim]');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:0.15});
+    animEls.forEach(el=>obs.observe(el));
 
-      async function inipesan() {
-        var { value: nama } = await swals.fire({
-          title: "Masukin Nama Kamu",
-          input: "text",
-        });
-        if (nama && nama.length < 11) {
-          window.nama = nama;
-          vketikhalo = "Hai, " + nama + " ✨";
-          mulainama();
-        } else {
-          await swals.fire(
-            "Ups!",
-            "Nama tidak boleh kosong atau lebih dari 10 karakter, ya!"
-          );
-          inipesan();
-        }
+    // projects data
+    const projects = [
+      {
+        title: "System Admin for Product & Digital Marketing",
+        desc: "Admin system untuk mengelola produk dan digital marketing di PT KK Indonesia.",
+        role: "Fullstack Developer",
+        tech: ["Laravel", "PHP"]
+      },
+      {
+        title: "System Services & Informations for Imigrasi Bogor",
+        desc: "Aplikasi layanan informasi Imigrasi Bogor Kelas I Non TPI.",
+        role: "Fullstack Developer",
+        tech: ["Laravel", "J-Query", "PHP"]
+      },
+      {
+        title: "E-Meterai Digital System",
+        desc: "Sistem integrasi E-Meterai menggunakan Laravel dan Golang.",
+        role: "Fullstack Developer",
+        tech: ["Laravel", "J-Query", "PHP"]
+      },
+      {
+        title: "Ramayana Dashboard",
+        desc: "Dashboard reporting Ramayana menggunakan Angular dan Golang.",
+        role: "Fullstack Developer",
+        tech: ["Laravel", "Angular.js", "Golang"]
+      },
+      {
+        title: "Ramayana E-Recruitment",
+        desc: "Sistem e-recruitment untuk internal Ramayana berbasis Laravel.",
+        role: "Fullstack Developer",
+        tech: ["Laravel", "PHP", "Golang"]
+      },
+      {
+        title: "ERP Beeloft",
+        desc: "ERP Beeloft dengan migrasi ke Angular dan Golang.",
+        role: "Fullstack Developer",
+        tech: ["Angular.js", "Golang"]
+      },
+      {
+        title: "ERP Sinar Sukses Mandiri",
+        desc: "ERP internal Sinarsukses Mandiri menggunakan Vue JS.",
+        role: "Fullstack Developer",
+        tech: ["Vue.js", "Java Spring boot"]
+      },
+      {
+        title: "ERP DFEO Indico Telkomsel",
+        desc: "ERP DFEO untuk Telkomsel sebagai bagian dari INDICO.",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"]
+      },
+      {
+        title: "System Indiana Indico Telkomsel",
+        desc: "Aplikasi Indiana system untuk Indico Telkomsel.",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"]
+      },
+      {
+        title: "Farm Recommendation System",
+        desc: "Sistem rekomendasi untuk pertanian (Mobile Farm).",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"]
+      },
+      {
+        title: "Buyer Experience Mobile DFEO",
+        desc: "Pengalaman pembeli pada platform DFEO versi mobile.",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"]
       }
+    ];
 
-      //Variable Pertanyaan Akhir
-      var tanya = "Mau Kado Gak Nih? 😶❤️";
-      var opstanya = "Ayo jawab 😆";
-      var tompositif = "Mau";
-      var tomnegatif = "Engga";
+    const techClass = {
+      "Golang":"bg-cyan-600","React.js":"bg-sky-500","PostgreSQL":"bg-blue-700",
+      "PHP":"bg-indigo-600","Laravel":"bg-red-600","MySQL":"bg-amber-600",
+      "Vue.js":"bg-green-600","Node.js":"bg-lime-600","HTML":"bg-orange-500",
+      "TailwindCSS":"bg-teal-500","WebSocket":"bg-purple-600"
+    };
 
-      async function menuju() {
-        pesanwhatsapp = "Makasii udah ngucapin " + nama + " ultah ><";
-        await swals.fire(
-          "OK!",
-          "Kirim jawabannya ke WhatsApp aku, ya!",
-          "success"
-        );
-        window.location =
-          "https://api.whatsapp.com/send?phone=&text=" + pesanwhatsapp;
+    let currentPage=1; const perPage=4;
+    function renderProjects(){
+      const container=document.getElementById('project-list');
+      container.innerHTML='';
+      const start=(currentPage-1)*perPage;
+      const pageProjects=projects.slice(start,start+perPage);
+      for(const p of pageProjects){
+        const badges=p.tech.map(t=>`<span class="text-white text-xs px-2 py-0.5 rounded ${techClass[t]||'bg-gray-500'}">${t}</span>`).join(' ');
+        const card=document.createElement('div');
+        card.className="bg-gray-800 rounded-lg shadow p-5 hover:shadow-md transition";
+        card.innerHTML=`
+          <h3 class="text-lg font-semibold text-white mb-2">${p.title}</h3>
+          <p class="text-gray-400 text-sm mb-1">${p.desc}</p>
+          <p class="text-xs text-cyan-400 font-medium mb-3">As ${p.role}</p>
+          <div class="flex flex-wrap gap-2">${badges}</div>
+        `;
+        container.appendChild(card);
       }
-    </script>
-    <script src="https://malasid.github.io/html/hbd.js"></script>
-    <!-- Sampai Sini -->
-  </body>
+      renderPagination();
+    }
+
+    function renderPagination(){
+      const pag=document.getElementById('pagination'); pag.innerHTML='';
+      const total=Math.ceil(projects.length/perPage);
+      for(let i=1;i<=total;i++){
+        const btn=document.createElement('button');
+        btn.className=`px-3 py-1 rounded text-sm ${i===currentPage?'bg-cyan-600 text-white':'bg-gray-700 text-gray-300 hover:bg-gray-600'}`;
+        btn.textContent=i;
+        btn.onclick=()=>{currentPage=i;renderProjects();};
+        pag.appendChild(btn);
+      }
+    }
+
+    renderProjects();
+  </script>
+</body>
 </html>
