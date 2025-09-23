@@ -19,9 +19,45 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
+
+    /* Hamburger button style */
+    #hamburger-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 60; /* lebih tinggi dari sidebar */
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: none; /* default hidden */
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #hamburger-btn div {
+      height: 4px;
+      background: #06b6d4;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Show hamburger when sidebar hidden */
+    body.sidebar-hidden #hamburger-btn {
+      display: flex;
+    }
+
+    /* Animate hamburger to X when active */
+    #hamburger-btn.active div:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    #hamburger-btn.active div:nth-child(2) {
+      opacity: 0;
+    }
+    #hamburger-btn.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
   </style>
 </head>
-<body class="antialiased text-gray-200 bg-gray-900">
+<body class="antialiased text-gray-200 bg-gray-900 sidebar-hidden">
 
   <!-- SIDEBAR NAV -->
   <aside id="sidebar" class="fixed top-0 left-0 h-full w-56 bg-gray-950 shadow-lg hidden flex-col z-50">
@@ -38,6 +74,13 @@
       © 2025 Rifai
     </div>
   </aside>
+
+  <!-- HAMBURGER BUTTON -->
+  <div id="hamburger-btn" aria-label="Toggle sidebar" role="button" tabindex="0">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 
   <!-- HERO (Parallax with Quote One Piece) -->
   <main class="ml-0 md:ml-56 transition-all">
@@ -134,17 +177,51 @@
     // sidebar muncul setelah hero
     const sidebar = document.getElementById('sidebar');
     const hero = document.getElementById('home');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const main = document.querySelector('main');
+    const body = document.body;
+
     function toggleSidebar() {
       const heroBottom = hero.offsetTop + hero.offsetHeight;
       if (window.scrollY > heroBottom - 60) {
         sidebar.classList.remove('hidden');
-        document.querySelector('main').classList.add('md:ml-56');
+        main.classList.add('md:ml-56');
+        body.classList.remove('sidebar-hidden');
+        hamburgerBtn.classList.remove('active');
       } else {
         sidebar.classList.add('hidden');
-        document.querySelector('main').classList.remove('md:ml-56');
+        main.classList.remove('md:ml-56');
+        body.classList.add('sidebar-hidden');
+        hamburgerBtn.classList.remove('active');
       }
     }
-    window.addEventListener('scroll', toggleSidebar);
+
+    // Toggle sidebar with hamburger button
+    hamburgerBtn.addEventListener('click', () => {
+      const isHidden = sidebar.classList.contains('hidden');
+      if (isHidden) {
+        // Show sidebar
+        sidebar.classList.remove('hidden');
+        main.classList.add('md:ml-56');
+        body.classList.remove('sidebar-hidden');
+        hamburgerBtn.classList.add('active');
+      } else {
+        // Hide sidebar
+        sidebar.classList.add('hidden');
+        main.classList.remove('md:ml-56');
+        body.classList.add('sidebar-hidden');
+        hamburgerBtn.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      // Jika sidebar sedang di toggle manual dengan hamburger, jangan override state
+      // Hanya reset jika sidebar disembunyikan secara otomatis oleh scroll
+      if (!hamburgerBtn.classList.contains('active')) {
+        toggleSidebar();
+      }
+    });
+
     toggleSidebar();
 
     // fade-up animation
