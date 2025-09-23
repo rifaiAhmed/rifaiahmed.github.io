@@ -33,6 +33,14 @@
       flex-direction: column;
       justify-content: space-between;
     }
+
+    #close-sidebar-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+    }
     #hamburger-btn div {
       height: 4px;
       background: #06b6d4;
@@ -61,10 +69,11 @@
 
   <!-- SIDEBAR NAV -->
   <aside id="sidebar" class="fixed top-0 left-0 h-full w-56 bg-gray-950 shadow-lg hidden flex-col z-50">
-    <div class="px-6 py-6 border-b border-gray-800">
+    <div class="px-6 py-6 border-b border-gray-800 flex justify-between items-center">
       <h1 class="text-xl font-bold text-white">Muhammad Rifa'i</h1>
-      <p class="text-xs text-gray-400 mt-1">Fullstack Developer</p>
+      <button id="close-sidebar-btn" aria-label="Close sidebar" class="text-gray-400 hover:text-cyan-400 focus:outline-none text-2xl font-bold">&times;</button>
     </div>
+    <p class="text-xs text-gray-400 mt-1">Fullstack Developer</p>
     <nav class="flex-1 flex flex-col gap-4 px-6 py-6 text-sm">
       <a href="#projects" class="nav-link hover:text-cyan-400 transition">📂 Projects</a>
       <a href="#timeline" class="nav-link hover:text-cyan-400 transition">⏳ Journey</a>
@@ -181,6 +190,15 @@
     const main = document.querySelector('main');
     const body = document.body;
 
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+
+    closeSidebarBtn.addEventListener('click', () => {
+      sidebar.classList.add('hidden');
+      main.classList.remove('md:ml-56');
+      body.classList.add('sidebar-hidden');
+      hamburgerBtn.classList.remove('active');
+    });
+
     function toggleSidebar() {
       const heroBottom = hero.offsetTop + hero.offsetHeight;
       if (window.scrollY > heroBottom - 60) {
@@ -214,13 +232,13 @@
       }
     });
 
-    window.addEventListener('scroll', () => {
-      // Jika sidebar sedang di toggle manual dengan hamburger, jangan override state
-      // Hanya reset jika sidebar disembunyikan secara otomatis oleh scroll
-      if (!hamburgerBtn.classList.contains('active')) {
-        toggleSidebar();
-      }
-    });
+    // window.addEventListener('scroll', () => {
+    //   // Jika sidebar sedang di toggle manual dengan hamburger, jangan override state
+    //   // Hanya reset jika sidebar disembunyikan secara otomatis oleh scroll
+    //   if (!hamburgerBtn.classList.contains('active')) {
+    //     toggleSidebar();
+    //   }
+    // });
 
     toggleSidebar();
 
