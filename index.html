@@ -207,6 +207,76 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
+    .marquee {
+      position: relative;
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card2) 55%, transparent);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .marquee::before,
+    .marquee::after {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 74px;
+      pointer-events: none;
+      background: linear-gradient(90deg, var(--bg2), transparent);
+      z-index: 2;
+    }
+    .marquee::after {
+      inset: 0 0 0 auto;
+      background: linear-gradient(270deg, var(--bg2), transparent);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 18px;
+      padding: 14px;
+      align-items: center;
+      animation: marqueeScroll 26s linear infinite;
+    }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .company-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 54px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 78%, transparent);
+      white-space: nowrap;
+    }
+    .company-pill img {
+      height: 26px;
+      width: auto;
+      display: block;
+      filter: saturate(1.05);
+    }
+    .company-pill span { font-size: 13px; color: var(--muted); font-weight: 700; }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 560px) {
+      .marquee::before,
+      .marquee::after { width: 46px; }
+      .company-pill { height: 48px; padding: 10px 14px; }
+      .company-pill img { height: 22px; }
+      .company-pill span { font-size: 12px; }
+      .marquee-track { gap: 12px; padding: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+
     .surface {
       border-radius: var(--radius);
       border: 1px solid var(--border);
@@ -477,6 +547,31 @@
                 <span style="opacity:.85;">— Gol D. Roger</span>
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="companies" class="section">
+      <div class="container">
+        <h2 class="h2 fade-up" data-anim>Companies I’ve worked with</h2>
+        <p class="p fade-up" data-anim>
+          A few teams I’ve contributed to across product delivery and system development.
+        </p>
+
+        <div class="marquee fade-up" data-anim aria-label="Company logos">
+          <div class="marquee-track">
+            <div class="company-pill"><img src="./public/companies/kk-indonesia.png" alt="PT KK Indonesia" loading="lazy"><span>PT KK Indonesia</span></div>
+            <div class="company-pill"><img src="./public/companies/ramayana.png" alt="PT Ramayana Lestari Sentosa" loading="lazy"><span>PT Ramayana</span></div>
+            <div class="company-pill"><img src="./public/companies/sinar-sukses-mandiri.png" alt="PT Sinar Sukses Mandiri" loading="lazy"><span>PT Sinar Sukses Mandiri</span></div>
+            <div class="company-pill"><img src="./public/companies/id-star.png" alt="PT IDStar Cipta Teknologi" loading="lazy"><span>PT IDStar</span></div>
+            <div class="company-pill"><img src="./public/companies/scuro.png" alt="PT Scuro Group" loading="lazy"><span>PT Scuro Group</span></div>
+
+            <div class="company-pill"><img src="./public/companies/kk-indonesia.png" alt="PT KK Indonesia" loading="lazy"><span>PT KK Indonesia</span></div>
+            <div class="company-pill"><img src="./public/companies/ramayana.png" alt="PT Ramayana Lestari Sentosa" loading="lazy"><span>PT Ramayana</span></div>
+            <div class="company-pill"><img src="./public/companies/sinar-sukses-mandiri.png" alt="PT Sinar Sukses Mandiri" loading="lazy"><span>PT Sinar Sukses Mandiri</span></div>
+            <div class="company-pill"><img src="./public/companies/id-star.png" alt="PT IDStar Cipta Teknologi" loading="lazy"><span>PT IDStar</span></div>
+            <div class="company-pill"><img src="./public/companies/scuro.png" alt="PT Scuro Group" loading="lazy"><span>PT Scuro Group</span></div>
           </div>
         </div>
       </div>
