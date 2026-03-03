@@ -68,7 +68,7 @@
       justify-content: space-between;
       gap: 16px;
     }
-    .brand { display: flex; align-items: center; gap: 12px; min-width: 240px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
      .mark {
         width: 38px;
         height: 38px;
@@ -82,8 +82,8 @@
 
         box-shadow: 0 18px 55px rgba(79, 70, 229, 0.18);
       }
-    .brand-title { font-weight: 700; line-height: 1.1; }
-    .brand-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .brand-title { font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 44vw; }
+    .brand-sub { font-size: 12px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 44vw; }
 
     .nav-links { display: none; gap: 6px; align-items: center; }
     .nav-links a {
@@ -101,6 +101,7 @@
     }
 
     .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .nav-actions .primary-cta { display: inline-flex; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -118,6 +119,7 @@
       font-weight: 600;
       font-size: 13px;
     }
+    .btn.compact { padding: 9px 10px; font-size: 12px; border-radius: 16px; box-shadow: none; background: var(--card2); }
     .btn:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--card) 85%, white 15%); }
     .btn:active { transform: translateY(0); }
     .btn.primary {
@@ -159,6 +161,23 @@
       background: color-mix(in srgb, var(--accent) 14%, transparent);
       border-color: color-mix(in srgb, var(--accent) 22%, transparent);
       color: color-mix(in srgb, var(--text) 88%, var(--accent) 12%);
+    }
+
+    .mobile-menu-panel {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg2) 55%, transparent);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .mobile-menu-panel .menu-cta {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .section { padding: 74px 0; border-top: 1px solid var(--border); }
@@ -255,7 +274,7 @@
       color: var(--text);
     }
 
-    .journey { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+    .journey { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 22px; }
     .journey h3 { margin: 0; font-size: 14px; letter-spacing: -0.01em; }
     .journey-card {
       position: relative;
@@ -278,11 +297,36 @@
       justify-content: space-between;
       gap: 10px;
     }
+    .journey-head h3 {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+    .journey-divider {
+      position: relative;
+      height: 1px;
+      margin-top: 12px;
+      background: color-mix(in srgb, var(--border) 85%, transparent);
+    }
     .journey-kicker {
       position: relative;
       font-size: 12px;
       font-weight: 800;
       color: var(--muted);
+      border: 1px solid var(--border);
+      background: var(--card2);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .journey-rail {
+      position: absolute;
+      left: 16px;
+      top: 64px;
+      bottom: 16px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(99,102,241,0.45), rgba(59,130,246,0.18));
+      opacity: 0.9;
+      border-radius: 99px;
     }
     .journey-list {
       position: relative;
@@ -292,7 +336,7 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
-      padding-left: 12px;
+      padding-left: 22px;
     }
     .journey-list > div {
       position: relative;
@@ -331,6 +375,17 @@
       .journey { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
       .contact-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
     }
+
+    @media (max-width: 420px) {
+      .nav-inner { height: 62px; gap: 10px; }
+      .mark { width: 32px; height: 32px; border-radius: 12px; }
+      .brand-title { max-width: 42vw; font-size: 13px; }
+      .brand-sub { display: none; }
+      .nav-actions { gap: 6px; }
+      .btn { padding: 9px 10px; border-radius: 16px; font-size: 12px; box-shadow: none; background: var(--card2); }
+      .btn.primary { box-shadow: none; }
+      .nav-actions .primary-cta { display: none; }
+    }
   </style>
 </head>
 <body data-theme="dark">
@@ -352,15 +407,21 @@
       </nav>
 
       <div class="nav-actions">
-        <button id="theme-toggle" class="btn ghost" type="button" aria-label="Toggle theme">Theme</button>
-        <button id="menu-toggle" class="btn ghost mobile-menu-btn" type="button" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">Menu</button>
-        <a class="btn primary" href="#projects">View Projects</a>
+        <button id="theme-toggle" class="btn compact" type="button" aria-label="Toggle theme">Theme</button>
+        <button id="menu-toggle" class="btn compact mobile-menu-btn" type="button" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">Menu</button>
+        <a class="btn primary primary-cta" href="#projects">Projects</a>
       </div>
     </div>
     <div class="container mobile-menu" id="mobile-menu" aria-label="Mobile menu">
-      <a class="nav-link" href="#projects">Projects</a>
-      <a class="nav-link" href="#timeline">Journey</a>
-      <a class="nav-link" href="#contact">Contact</a>
+      <div class="mobile-menu-panel">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#timeline">Journey</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <div class="menu-cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -443,10 +504,12 @@
 
         <div class="journey">
           <div class="surface card journey-card fade-up" data-anim>
+            <div class="journey-rail" aria-hidden="true"></div>
             <div class="journey-head">
               <h3>🎓 Education</h3>
               <div class="journey-kicker">Foundations</div>
             </div>
+            <div class="journey-divider" aria-hidden="true"></div>
             <div class="journey-list">
               <div>SDN 01 Dayasakti</div>
               <div>SMPN 02 Tumijajar</div>
@@ -456,10 +519,12 @@
           </div>
 
           <div class="surface card journey-card fade-up" data-anim>
+            <div class="journey-rail" aria-hidden="true"></div>
             <div class="journey-head">
               <h3>🤝 Organization</h3>
               <div class="journey-kicker">Leadership</div>
             </div>
+            <div class="journey-divider" aria-hidden="true"></div>
             <div class="journey-list">
               <div>2017–2018 • Kepala Bidang HIMSI</div>
               <div>2017–2018 • Ketua Pelaksana Karnaval IT Season 7 HIMSI</div>
@@ -468,15 +533,18 @@
           </div>
 
           <div class="surface card journey-card fade-up" data-anim>
+            <div class="journey-rail" aria-hidden="true"></div>
             <div class="journey-head">
               <h3>💼 Work Experience</h3>
               <div class="journey-kicker">Delivery</div>
             </div>
+            <div class="journey-divider" aria-hidden="true"></div>
             <div class="journey-list">
-              <div>2020–2022 • Fullstack Developer • PT KK Indonesia</div>
-              <div>2022–2023 • Fullstack Developer • PT Ramayana Lestari Sentosa</div>
-              <div>2023–2025 • Fullstack Developer • PT Sinar Sukses Mandiri</div>
-              <div>2025 • Fullstack Developer • PT IDStar Cipta Teknologi</div>
+              <div>2020 – 2022 • Fullstack Developer • PT KK Indonesia</div>
+              <div>2022 – 2023 • Fullstack Developer • PT Ramayana Lestari Sentosa</div>
+              <div>2023 – 2025 • Fullstack Developer • PT Sinar Sukses Mandiri</div>
+              <div>Mei 2025 - Dec 2025 • Fullstack Developer • PT IDStar Cipta Teknologi</div>
+              <div>Dec 2025 - Now • IT Programmer Supervisor • PT Scuro Group</div>
             </div>
           </div>
         </div>
@@ -674,7 +742,25 @@
         desc: "Buyer experience for DFEO mobile platform.",
         role: "Fullstack Developer",
         tech: ["React.js", "Golang"]
-      }
+      },
+      {
+        title: "Budget Cotroller",
+        desc: "Budget cotroller system for Scuro Group.",
+        role: "Fullstack Developer",
+        tech: ["PHP Native"]
+      },
+      {
+        title: "Quotation Payment",
+        desc: "Note Hostory payment quotation for Scuro Group.",
+        role: "Fullstack Developer",
+        tech: ["PHP Native"]
+      },
+      {
+        title: "LLM Chatbot",
+        desc: "LLM Chatbot for Scuro Group.",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"]
+      },
     ];
 
     const techTone = {
