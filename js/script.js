@@ -116,7 +116,7 @@ const root = document.body;
       {
         title: "Ramayana Dashboard",
         desc: "Reporting dashboard for Ramayana built with Angular and Golang.",
-        role: "Fullstack Developer",
+        role: "Backend Developer",
         tech: ["Laravel", "Angular.js", "Golang"]
       },
       {
