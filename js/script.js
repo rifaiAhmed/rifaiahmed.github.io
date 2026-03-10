@@ -64,7 +64,7 @@ const root = document.body;
 
     // active nav link
     const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-    const sectionIds = ['#home', '#projects', '#timeline', '#contact'];
+    const sectionIds = ['#home', '#projects', '#videos', '#timeline', '#contact'];
     const sections = sectionIds
       .map(id => document.querySelector(id))
       .filter(Boolean);
