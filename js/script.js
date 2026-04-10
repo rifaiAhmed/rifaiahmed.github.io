@@ -99,85 +99,115 @@ const root = document.body;
         title: "System Admin for Product & Digital Marketing",
         desc: "Admin system to manage products and digital marketing at PT KK Indonesia.",
         role: "Fullstack Developer",
-        tech: ["Laravel", "PHP"]
+        tech: ["Laravel", "PHP"],
+        thumb: "public/thumb-system-admin-digital-marketing.svg"
       },
       {
         title: "System Services & Informations for Imigrasi Bogor",
         desc: "Information and service application for Imigrasi Bogor Kelas I Non TPI.",
         role: "Fullstack Developer",
-        tech: ["Laravel", "J-Query", "PHP"]
+        tech: ["Laravel", "J-Query", "PHP"],
+        thumb: "public/thumb-imigrasi-bogor.svg"
       },
       {
         title: "E-Meterai Digital System",
         desc: "E-Meterai integration system built with Laravel and Golang.",
         role: "Fullstack Developer",
-        tech: ["Laravel", "J-Query", "PHP"]
+        tech: ["Laravel", "J-Query", "PHP"],
+        thumb: "public/thumb-e-meterai.svg"
       },
       {
         title: "Ramayana Dashboard",
         desc: "Reporting dashboard for Ramayana built with Angular and Golang.",
         role: "Backend Developer",
-        tech: ["Laravel", "Angular.js", "Golang"]
+        tech: ["Laravel", "Angular.js", "Golang"],
+        thumb: "public/thumb-ramayana-dashboard.svg"
       },
       {
         title: "Ramayana E-Recruitment",
         desc: "Internal e-recruitment system for Ramayana built with Laravel.",
         role: "Fullstack Developer",
-        tech: ["Laravel", "PHP", "Golang"]
+        tech: ["Laravel", "PHP", "Golang"],
+        thumb: "public/thumb-ramayana-e-recruitment.svg"
       },
       {
         title: "ERP Beeloft",
         desc: "Beeloft ERP migrated to Angular and Golang.",
         role: "Fullstack Developer",
-        tech: ["Angular.js", "Golang"]
+        tech: ["Angular.js", "Golang"],
+        thumb: "public/thumb-erp-beeloft.svg"
       },
       {
         title: "ERP Sinar Sukses Mandiri",
         desc: "Internal ERP for Sinar Sukses Mandiri built with Vue.",
         role: "Fullstack Developer",
-        tech: ["Vue.js", "Java Spring boot"]
+        tech: ["Vue.js", "Java Spring boot"],
+        thumb: "public/thumb-erp-sinar-sukses-mandiri.svg"
       },
       {
         title: "ERP DFEO Indico Telkomsel",
         desc: "DFEO ERP for Telkomsel as part of INDICO.",
         role: "Fullstack Developer",
-        tech: ["React.js", "Golang"]
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-erp-dfeo-indico.svg"
       },
       {
         title: "System Indiana Indico Telkomsel",
         desc: "Indiana system application for Indico Telkomsel.",
         role: "Fullstack Developer",
-        tech: ["React.js", "Golang"]
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-system-indiana-indico.svg"
       },
       {
         title: "Farm Recommendation System",
         desc: "Recommendation system for agriculture (Mobile Farm).",
         role: "Fullstack Developer",
-        tech: ["React.js", "Golang"]
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-farm-recommendation.svg"
       },
       {
         title: "Buyer Experience Mobile DFEO",
         desc: "Buyer experience for DFEO mobile platform.",
         role: "Fullstack Developer",
-        tech: ["React.js", "Golang"]
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-buyer-experience-dfeo.svg"
       },
       {
         title: "Budget Cotroller",
         desc: "Budget cotroller system for Scuro Group.",
         role: "Fullstack Developer",
-        tech: ["PHP Native"]
+        tech: ["PHP Native"],
+        thumb: "public/thumb-budget-controller.svg"
       },
       {
         title: "Quotation Payment",
         desc: "Note Hostory payment quotation for Scuro Group.",
         role: "Fullstack Developer",
-        tech: ["PHP Native"]
+        tech: ["PHP Native"],
+        thumb: "public/thumb-quotation-payment.svg"
       },
       {
         title: "LLM + Messenger",
         desc: "LLM + Messenger for Scuro Group.",
         role: "Fullstack Developer",
-        tech: ["React.js", "Golang"]
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-llm-messenger.svg"
+      },
+      {
+        title: "Budget Family",
+        desc: "Household budgeting app with monthly/yearly filters, income/expense tracking, and balance insights.",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-budget-family.svg",
+        live: "https://budget.medgrup.my.id"
+      },
+      {
+        title: "Din Store",
+        desc: "Mobile-first e-commerce app for showcasing products, cart flow, and simplified ordering experience.",
+        role: "Fullstack Developer",
+        tech: ["React.js", "Golang"],
+        thumb: "public/thumb-din-store.svg",
+        live: "https://mobile.medgroup.my.id"
       },
     ];
 
@@ -205,14 +235,27 @@ const root = document.body;
       const pageProjects=projects.slice(start,start+perPage);
       for(const p of pageProjects){
         const badges=p.tech.map(t=>`<span class="tag" data-tone="${techTone[t]||'gray'}">${t}</span>`).join('');
+        const media = p.thumb
+          ? `<div class="card-media">
+              <img class="card-thumb" src="${p.thumb}" alt="${p.title}" loading="lazy" decoding="async" />
+            </div>`
+          : '';
+        const actions = p.live
+          ? `<div class="card-actions">
+              <a class="btn compact" href="${p.live}" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>`
+          : '';
         const card=document.createElement('div');
         card.className="surface card fade-up";
         card.innerHTML=`
+          ${media}
           <h3 class="card-title">${p.title}</h3>
           <p class="card-desc">${p.desc}</p>
           <div class="card-role">As ${p.role}</div>
           <div class="badges">${badges}</div>
+          ${actions}
         `;
+
         card.setAttribute('data-anim', '');
         container.appendChild(card);
         obs.observe(card);

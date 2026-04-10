@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Buyer Experience Mobile DFEO thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="55%" stop-color="#0f1b33"/>
+      <stop offset="100%" stop-color="#06101f"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="30%" cy="18%" r="75%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="82%" cy="26%" r="75%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <rect width="1200" height="675" fill="url(#g2)"/>
+
+  <g opacity="0.9">
+    <rect x="86" y="86" width="1028" height="503" rx="36" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+    <rect x="140" y="164" width="520" height="62" rx="20" fill="rgba(56,189,248,0.16)" stroke="rgba(56,189,248,0.30)"/>
+
+    <g transform="translate(170 232)">
+      <rect x="0" y="0" width="520" height="346" rx="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <rect x="46" y="60" width="428" height="62" rx="20" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.22)"/>
+      <rect x="46" y="142" width="200" height="180" rx="26" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <rect x="274" y="142" width="200" height="180" rx="26" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <rect x="46" y="336" width="160" height="44" rx="14" fill="rgba(249,115,22,0.16)" stroke="rgba(249,115,22,0.28)"/>
+      <rect x="314" y="336" width="160" height="44" rx="14" fill="rgba(249,115,22,0.16)" stroke="rgba(249,115,22,0.28)"/>
+    </g>
+
+    <g transform="translate(770 208)">
+      <rect x="0" y="0" width="340" height="390" rx="40" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)"/>
+      <path d="M86 146 h168 a18 18 0 0 1 18 18 v128 a22 22 0 0 1-22 22 h-140 a22 22 0 0 1-22-22 v-128 a18 18 0 0 1 18-18z" fill="rgba(56,189,248,0.14)" stroke="rgba(56,189,248,0.26)"/>
+      <path d="M110 146 c0-42 15-66 60-66 s60 24 60 66" fill="none" stroke="rgba(229,231,235,0.65)" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="268" cy="108" r="16" fill="rgba(249,115,22,0.75)"/>
+    </g>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#e5e7eb">
+    <text x="140" y="120" font-size="42" font-weight="900" letter-spacing="-0.5">Buyer Experience</text>
+    <text x="140" y="188" font-size="22" font-weight="700" dominant-baseline="middle" opacity="0.9">Mobile DFEO</text>
+    <text x="140" y="520" font-size="18" font-weight="600" opacity="0.75">Browse • Cart • Purchase</text>
+  </g>
+</svg>
