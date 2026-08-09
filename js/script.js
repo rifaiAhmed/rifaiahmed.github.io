@@ -227,13 +227,15 @@ const root = document.body;
       "Java Spring boot":"indigo"
     };
 
-    let currentPage=1; const perPage=4;
+    const carousel = document.getElementById('project-list');
+    const pagDots = document.getElementById('pagination');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
     function renderProjects(){
-      const container=document.getElementById('project-list');
-      container.innerHTML='';
-      const start=(currentPage-1)*perPage;
-      const pageProjects=projects.slice(start,start+perPage);
-      for(const p of pageProjects){
+      carousel.innerHTML='';
+      pagDots.innerHTML='';
+      projects.forEach((p, idx)=>{
         const badges=p.tech.map(t=>`<span class="tag" data-tone="${techTone[t]||'gray'}">${t}</span>`).join('');
         const media = p.thumb
           ? `<div class="card-media">
@@ -257,22 +259,83 @@ const root = document.body;
         `;
 
         card.setAttribute('data-anim', '');
-        container.appendChild(card);
+        carousel.appendChild(card);
         obs.observe(card);
-      }
-      renderPagination();
+
+        const dot=document.createElement('button');
+        dot.type='button';
+        dot.className='carousel-dot';
+        dot.setAttribute('aria-label', `Go to project ${idx+1}`);
+        dot.onclick=()=>scrollToCard(idx);
+        pagDots.appendChild(dot);
+      });
+      updateActiveDot();
     }
 
-    function renderPagination(){
-      const pag=document.getElementById('pagination'); pag.innerHTML='';
-      const total=Math.ceil(projects.length/perPage);
-      for(let i=1;i<=total;i++){
-        const btn=document.createElement('button');
-        btn.className=`page-btn ${i===currentPage?'active':''}`;
-        btn.textContent=i;
-        btn.onclick=()=>{currentPage=i;renderProjects();};
-        pag.appendChild(btn);
-      }
+    function getCardStep(){
+      const card = carousel.querySelector('.card');
+      if(!card) return 0;
+      const style = getComputedStyle(carousel);
+      const gap = parseFloat(style.columnGap || style.gap || 0);
+      return card.getBoundingClientRect().width + gap;
     }
+
+    function scrollToCard(idx){
+      carousel.scrollTo({ left: idx * getCardStep(), behavior:'smooth' });
+    }
+
+    function updateActiveDot(){
+      const step = getCardStep();
+      const activeIdx = step ? Math.round(carousel.scrollLeft / step) : 0;
+      pagDots.querySelectorAll('.carousel-dot').forEach((d,i)=>{
+        d.classList.toggle('active', i===activeIdx);
+      });
+    }
+
+    let dotRaf;
+    carousel.addEventListener('scroll', ()=>{
+      cancelAnimationFrame(dotRaf);
+      dotRaf = requestAnimationFrame(updateActiveDot);
+    });
+
+    prevBtn.addEventListener('click', ()=>{
+      const step = getCardStep();
+      const idx = Math.max(0, Math.round(carousel.scrollLeft/step) - 1);
+      scrollToCard(idx);
+    });
+    nextBtn.addEventListener('click', ()=>{
+      const step = getCardStep();
+      const idx = Math.min(projects.length-1, Math.round(carousel.scrollLeft/step) + 1);
+      scrollToCard(idx);
+    });
+
+    // Drag-to-scroll for mouse (touch/trackpad already work natively)
+    let isDown=false, startX=0, startScroll=0, moved=false;
+    carousel.addEventListener('mousedown', (e)=>{
+      isDown=true; moved=false;
+      carousel.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = carousel.scrollLeft;
+    });
+    window.addEventListener('mouseup', ()=>{
+      isDown=false;
+      carousel.classList.remove('dragging');
+    });
+    carousel.addEventListener('mouseleave', ()=>{
+      isDown=false;
+      carousel.classList.remove('dragging');
+    });
+    carousel.addEventListener('mousemove', (e)=>{
+      if(!isDown) return;
+      e.preventDefault();
+      const dx = e.pageX - startX;
+      if(Math.abs(dx) > 5) moved = true;
+      carousel.scrollLeft = startScroll - dx;
+    });
+    carousel.addEventListener('click', (e)=>{
+      if(moved){ e.preventDefault(); e.stopPropagation(); moved=false; }
+    }, true);
+
+    window.addEventListener('resize', updateActiveDot);
 
     renderProjects();

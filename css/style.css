@@ -290,7 +290,50 @@
     .quote { margin-top: 16px; padding: 14px; }
     .quote p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
 
-    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+    .project-carousel { position: relative; margin-top: 22px; }
+    .grid {
+      display: flex;
+      gap: 14px;
+      margin-top: 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+      padding-bottom: 4px;
+    }
+    .grid::-webkit-scrollbar { display: none; }
+    .grid.dragging { cursor: grabbing; scroll-snap-type: none; }
+    .grid .card {
+      scroll-snap-align: start;
+      flex: 0 0 88%;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 90%, transparent);
+      backdrop-filter: blur(8px);
+      color: var(--text);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .15s ease, transform .15s ease;
+      box-shadow: var(--shadow);
+    }
+    .carousel-arrow:hover { background: color-mix(in srgb, var(--accent) 24%, var(--card) 76%); }
+    .carousel-arrow.prev { left: -18px; }
+    .carousel-arrow.next { right: -18px; }
+    @media (min-width: 760px) {
+      .grid .card { flex: 0 0 calc(50% - 7px); }
+      .carousel-arrow { display: flex; }
+    }
     .card { padding: 18px; }
     .card-media {
       border-radius: 18px;
@@ -354,23 +397,23 @@
     .tag[data-tone="violet"] { background: rgba(249, 115, 22, 0.14); border-color: rgba(249, 115, 22, 0.22); }
     .tag[data-tone="gray"] { background: rgba(249, 115, 22, 0.12); border-color: rgba(249, 115, 22, 0.20); }
 
-    .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
-    .page-btn {
-      border-radius: 16px;
-      border: 1px solid var(--border);
+    .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 18px; flex-wrap: wrap; }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
       background: var(--card2);
-      color: var(--muted);
-      padding: 9px 12px;
-      font-weight: 800;
-      font-size: 12px;
+      border: 1px solid var(--border);
       cursor: pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
+      padding: 0;
+      transition: all .25s ease;
     }
-    .page-btn:hover { transform: translateY(-1px); background: var(--card); color: var(--text); }
-    .page-btn.active {
-      background: color-mix(in srgb, var(--accent) 22%, transparent);
-      border-color: color-mix(in srgb, var(--accent) 34%, transparent);
-      color: var(--text);
+    .carousel-dot:hover { background: color-mix(in srgb, var(--accent) 30%, var(--card2) 70%); }
+    .carousel-dot.active {
+      width: 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      border-color: color-mix(in srgb, var(--accent) 60%, transparent);
     }
 
     .journey { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 22px; }
@@ -470,7 +513,6 @@
       .mobile-menu { display: none; }
       .hero-grid { grid-template-columns: 1.25fr 0.75fr; gap: 18px; align-items: center; }
       .hero-title { font-size: 54px; }
-      .grid { grid-template-columns: 1fr 1fr; gap: 16px; }
       .video-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
       .journey { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
       .contact-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
